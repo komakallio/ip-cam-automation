@@ -1,10 +1,16 @@
 import configparser
+import os
+import time
 from CameraLED import *
 from Roof import *
 
 
 def main():
-    logging.basicConfig(filename='cam-automation.log', format='%(asctime)s - %(message)s')
+    base_dir = os.path.dirname(os.path.realpath(__file__))
+    # Configure logger
+    log_file = os.path.join(base_dir, 'cam-automation.log')
+    logging.Formatter.converter = time.gmtime
+    logging.basicConfig(filename=log_file, format='%(asctime)s - %(name)s:%(levelname)s - %(message)s')
 
     logging.debug('Reading config file.')
     config = configparser.ConfigParser()
