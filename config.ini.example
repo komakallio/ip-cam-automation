@@ -1,0 +1,8 @@
+[IPCam]
+Username = foo
+Password = bar
+IP = 1.1.1.1
+
+[Roof]
+IP = 1.1.1.1
+Port = 1234
