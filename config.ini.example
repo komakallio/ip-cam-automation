@@ -1,3 +1,6 @@
+[General]
+PollingIntervalSeconds = 120
+
 [IPCam]
 Username = foo
 Password = bar

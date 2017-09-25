@@ -25,8 +25,12 @@ def main():
     roof_port = config['Roof']['Port']
     roof = Roof(roof_ip_address, roof_port)
 
-    logging.debug('Setting LED status')
-    led.enabled = roof.closed
+    polling_interval = int(config['General']['PollingIntervalSeconds'])
+
+    while True:
+        logging.debug('Setting LED status')
+        led.enabled = roof.closed
+        time.sleep(polling_interval)
 
 
 if __name__ == '__main__':
