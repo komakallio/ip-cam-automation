@@ -1,6 +1,6 @@
+import logging
 import requests
 import requests.auth
-import logging
 
 
 class CameraLED:

@@ -1,8 +1,9 @@
 import configparser
 import os
 import time
-from CameraLED import *
-from Roof import *
+import logging
+from CameraLED import CameraLED
+from Roof import Roof
 
 
 def main():
@@ -29,7 +30,7 @@ def main():
 
     while True:
         logging.debug('Setting LED status')
-        led.enabled = roof.closed
+        led.enabled = not roof.open
         time.sleep(polling_interval)
 
 
