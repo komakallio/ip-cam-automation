@@ -22,7 +22,8 @@ class CameraLED:
         try:
             response = requests.get(url, auth=requests.auth.HTTPDigestAuth(self._username, self._password))
             if not response.ok:
-                logging.error('Could not authenticate with IP camera!')
+                logging.warning('Could not authenticate with IP camera!')
                 raise RuntimeError('Could not authenticate with IP camera!')
         except:
-            raise RuntimeError('Could not authenticate with IP camera!')
+            logging.warning('Could not connect to IP camera!')
+            raise RuntimeError('Could not connect to IP camera!')
