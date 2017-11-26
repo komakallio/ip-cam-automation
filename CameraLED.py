@@ -19,7 +19,10 @@ class CameraLED:
         self._status = value
         state_string = 'auto' if value else 'close'
         url = 'http://' + self._ip_address + '/hy-cgi/irctrl.cgi?cmd=setinfrared&infraredstatus=' + state_string
-        response = requests.get(url, auth=requests.auth.HTTPDigestAuth(self._username, self._password))
-        if not response.ok:
-            logging.error('Could not authenticate with IP camera!')
+        try:
+            response = requests.get(url, auth=requests.auth.HTTPDigestAuth(self._username, self._password))
+            if not response.ok:
+                logging.error('Could not authenticate with IP camera!')
+                raise RuntimeError('Could not authenticate with IP camera!')
+        except:
             raise RuntimeError('Could not authenticate with IP camera!')

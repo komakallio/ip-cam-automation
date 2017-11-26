@@ -10,9 +10,12 @@ class Roof:
     @property
     def open(self):
         url = 'http://' + self._ip_address + ':' + str(self._port) + '/api/roof'
-        response = requests.get(url)
-        if not response.ok:
-            logging.warning('Could not retrieve roof state!')
+        try:
+            response = requests.get(url)
+            if not response.ok:
+                logging.warning('Could not retrieve roof state!')
+                raise RuntimeError('Roof status not available!')
+        except:
             raise RuntimeError('Roof status not available!')
         roof_state = response.json()['Roof']['State']
         return roof_state == 'OPEN'
