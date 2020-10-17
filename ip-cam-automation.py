@@ -30,11 +30,12 @@ def main():
         logging.debug('Setting LED status')
         try:
             led.enabled = not roof.open
-        except KeyError as e:
-            logging.error('Invalid response from API: {}'.format(e))
-        except RuntimeError as e:
-            logging.error('Runtime error: {}'.format(e))
-        time.sleep(polling_interval)
+        except KeyError:
+            logging.error('Invalid response from API', exc_info=True)
+        except RuntimeError:
+            logging.error('Runtime error', exc_info=True)
+        finally:
+            time.sleep(polling_interval)
 
 
 if __name__ == '__main__':

@@ -15,8 +15,8 @@ class Roof:
             if not response.ok:
                 logging.warning('Could not retrieve roof state!')
                 raise RuntimeError('Roof status not available!')
-        except:
-            logging.warning('Could not connect to roof controller!')
+        except Exception:
+            logging.warning('Could not connect to roof controller!', exc_info=True)
             raise RuntimeError('Could not connect to roof controller!')
         roof_state = response.json()['Roof']['State']
         return roof_state == 'OPEN'

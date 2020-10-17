@@ -24,6 +24,6 @@ class CameraLED:
             if not response.ok:
                 logging.warning('Could not authenticate with IP camera!')
                 raise RuntimeError('Could not authenticate with IP camera!')
-        except:
-            logging.warning('Could not connect to IP camera!')
+        except Exception:
+            logging.warning('Could not connect to IP camera!', exc_info=True)
             raise RuntimeError('Could not connect to IP camera!')
