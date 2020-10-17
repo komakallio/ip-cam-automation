@@ -1,5 +1,4 @@
 import configparser
-import os
 import time
 import logging
 from CameraLED import CameraLED
