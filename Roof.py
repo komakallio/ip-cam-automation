@@ -11,7 +11,7 @@ class Roof:
     def open(self):
         url = 'http://' + self._ip_address + ':' + str(self._port) + '/api/roof'
         try:
-            response = requests.get(url)
+            response = requests.get(url, timeout=5)
             if not response.ok:
                 logging.warning('Could not retrieve roof state!')
                 raise RuntimeError('Roof status not available!')
